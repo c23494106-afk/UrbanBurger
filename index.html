@@ -1,20 +1,9 @@
-<think>
-The user wants me to add a payment system to the UrbanBurger website and set the owner name as "Shivbhajan Pandey". I'll add a complete payment integration system with various payment methods.
-Let me update the code to include:
-1. Payment system with multiple payment options (UPI, Cards, COD, Wallet)
-2. Owner name "Shivbhajan Pandey" in the footer and other places
-3. A complete checkout flow
-I'll update the HTML file with the payment integration.
-</think> website with payment system and owner name "Shivbhajan Pandey":
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UrbanBurger - Premium Burgers | Best Online Burger Shop</title>
-    <meta name="description" content="Order delicious burgers online from UrbanBurger. Fresh ingredients, amazing taste, fast delivery by Shivbhajan Pandey">
-    
+    <title>UrbanBurger - Premium Burgers</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -29,7 +18,6 @@ I'll update the HTML file with the payment integration.
             --light: #f8f9fa;
             --dark: #1a1a1a;
             --accent: #f39c12;
-            --success: #27ae60;
         }
         /* Header Styles */
         header {
@@ -54,14 +42,6 @@ I'll update the HTML file with the payment integration.
         }
         .logo span {
             color: white;
-        }
-        .owner-badge {
-            background: var(--primary);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            margin-left: 5px;
         }
         .nav-links {
             display: flex;
@@ -123,11 +103,6 @@ I'll update the HTML file with the payment integration.
             color: #ddd;
             margin-bottom: 2rem;
         }
-        .owner-info {
-            color: var(--accent);
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
         .btn {
             padding: 15px 40px;
             font-size: 1.1rem;
@@ -154,7 +129,7 @@ I'll update the HTML file with the payment integration.
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 3rem;
             color: var(--dark);
         }
         .section-title span {
@@ -246,7 +221,6 @@ I'll update the HTML file with the payment integration.
         }
         .cart-items {
             padding: 1.5rem;
-            min-height: 200px;
         }
         .cart-item {
             display: flex;
@@ -301,177 +275,6 @@ I'll update the HTML file with the payment integration.
             cursor: pointer;
             margin-top: 1rem;
         }
-        .empty-cart {
-            text-align: center;
-            padding: 2rem;
-            color: #666;
-        }
-        .empty-cart i {
-            font-size: 3rem;
-            color: #ddd;
-            margin-bottom: 1rem;
-        }
-        /* Payment Modal */
-        .payment-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 3000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-        .payment-modal.active {
-            display: flex;
-        }
-        .payment-content {
-            background: white;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 500px;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 2rem;
-        }
-        .payment-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        .payment-header h2 {
-            color: var(--dark);
-        }
-        .close-payment {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        .payment-methods {
-            margin-bottom: 1.5rem;
-        }
-        .payment-method {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            margin-bottom: 0.8rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .payment-method:hover, .payment-method.selected {
-            border-color: var(--primary);
-            background: #fff5f2;
-        }
-        .payment-method input {
-            margin-right: 10px;
-        }
-        .payment-method i {
-            font-size: 1.5rem;
-            margin-right: 10px;
-            color: var(--primary);
-        }
-        .payment-details {
-            display: none;
-        }
-        .payment-details.active {
-            display: block;
-        }
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-            font-weight: 500;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-        .order-summary {
-            background: var(--light);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-        }
-        .order-summary h4 {
-            margin-bottom: 0.5rem;
-        }
-        .order-summary-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-        }
-        .order-summary-row.total {
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-top: 2px solid #ddd;
-            padding-top: 0.5rem;
-            margin-top: 0.5rem;
-        }
-        .pay-btn {
-            width: 100%;
-            padding: 15px;
-            background: var(--success);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            cursor: pointer;
-        }
-        .pay-btn:hover {
-            background: #219a52;
-        }
-        /* Success Modal */
-        .success-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 4000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-        .success-modal.active {
-            display: flex;
-        }
-        .success-content {
-            background: white;
-            border-radius: 15px;
-            padding: 3rem;
-            text-align: center;
-            max-width: 400px;
-        }
-        .success-content i {
-            font-size: 4rem;
-            color: var(--success);
-            margin-bottom: 1rem;
-        }
-        .success-content h2 {
-            color: var(--dark);
-            margin-bottom: 1rem;
-        }
-        .success-content p {
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
         /* About Section */
         .about {
             padding: 5rem 5%;
@@ -493,10 +296,6 @@ I'll update the HTML file with the payment integration.
             line-height: 1.8;
             margin-bottom: 1rem;
         }
-        .owner-highlight {
-            color: var(--primary);
-            font-weight: bold;
-        }
         .about-image img {
             width: 100%;
             border-radius: 15px;
@@ -511,21 +310,23 @@ I'll update the HTML file with the payment integration.
             max-width: 600px;
             margin: 0 auto;
         }
-        .contact-form .form-group {
+        .form-group {
             margin-bottom: 1.5rem;
         }
-        .contact-form .form-group label {
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
             color: #ddd;
         }
-        .contact-form .form-group input,
-        .contact-form .form-group textarea {
+        .form-group input,
+        .form-group textarea {
             width: 100%;
             padding: 12px;
             border: none;
             border-radius: 8px;
             font-size: 1rem;
         }
-        .contact-form .form-group textarea {
+        .form-group textarea {
             height: 120px;
             resize: none;
         }
@@ -535,16 +336,6 @@ I'll update the HTML file with the payment integration.
             color: white;
             padding: 2rem 5%;
             text-align: center;
-        }
-        .footer-owner {
-            background: #222;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-        }
-        .footer-owner h4 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
         }
         .social-links {
             margin-top: 1rem;
@@ -609,11 +400,116 @@ I'll update the HTML file with the payment integration.
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <p class="owner-info">Powered by Shivbhajan Pandey</p>
             <h1>Best <span>Burger</span> in Town</h1>
             <p>Fresh ingredients, amazing taste, delivered to your door!</p>
             <a href="#menu" class="btn btn-primary">Order Now</a>
         </div>
     </section>
     <!-- Menu Section -->
-    
+    <section class="menu" id="menu">
+        <h2 class="section-title">Our <span>Menu</span></h2>
+        <div class="menu-grid" id="menuGrid">
+            <!-- Menu items will be added by JavaScript -->
+        </div>
+    </section>
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Welcome to UrbanBurger</h2>
+                <p>At UrbanBurger, we believe that great food brings people together. Our burgers are made with the finest ingredients, fresh vegetables, and secret sauces that will make your taste buds dance!</p>
+                <p>We source our meat from trusted local suppliers and ensure every burger is grilled to perfection. Whether you're craving a classic cheeseburger or something more adventurous, we've got you covered.</p>
+                <p>Order online and get fresh, hot burgers delivered to your doorstep within minutes!</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=600" alt="About UrbanBurger">
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">Contact <span>Us</span></h2>
+        <form class="contact-form" onsubmit="submitForm(event)">
+            <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" placeholder="Enter your phone number" required>
+            </div>
+            <div class="form-group">
+                <label>Your Address</label>
+                <textarea placeholder="Enter your delivery address" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Order</button>
+        </form>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <h3>UrbanBurger</h3>
+        <p>Follow us on social media</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p style="margin-top: 1rem; color: #666;">&copy; 2024 UrbanBurger. All rights reserved.</p>
+    </footer>
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be added here -->
+        </div>
+        <div class="cart-total">
+            <h3>Total: ₹<span id="cartTotal">0</span></h3>
+            <button class="checkout-btn" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+    <script>
+        // Menu Data
+        const menuItems = [
+            {
+                id: 1,
+                name: "Classic Cheese Burger",
+                description: "Juicy beef patty with melted cheese, lettuce, tomato, and our special sauce",
+                price: 199,
+                image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400"
+            },
+            {
+                id: 2,
+                name: "Urban Spicy Burger",
+                description: "Extra spicy patty with jalapeños, pepper jack cheese, and hot sauce",
+                price: 249,
+                image: "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400"
+            },
+            {
+                id: 3,
+                name: "Veggie Supreme",
+                description: "Crispy veggie patty with fresh vegetables, avocado, and hummus",
+                price: 179,
+                image: "https://images.unsplash.com/photo-1520072959219-c595dc870360?w=400"
+            },
+            {
+                id: 4,
+                name: "Bacon Delight",
+                description: "Crispy bacon strips with cheddar cheese, caramelized onions",
+                price: 299,
+                image: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400"
+            },
+            {
+                id: 5,
+                name: "Double Stack",
+                description: "Two beef patties with double cheese, lettuce, tomato",
+                price: 349,
+                image: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=400"
+            },
+            {
+                id: 6,
+                name: "Chicken Crunch Burger",
+                description: "Crispy chicken patty with coleslaw, pickles,
